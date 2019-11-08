@@ -6,11 +6,13 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
+import org.eclipse.microprofile.opentracing.Traced;
 
 @Provider
 public class AuthFilter implements ContainerRequestFilter {
 
   @Override
+  @Traced
   public void filter(ContainerRequestContext ctx) {
     System.out.println("***** External Auth Service Headers *****");
     ctx.getHeaders().keySet().forEach(h -> System.out.println(h));
